@@ -35,7 +35,7 @@ public class ImportExportFromXml
     public void import_employees(ItCompany company) throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
-        Document document = builder.parse(new File("src/com/company/ImportXmlFile.xml"));
+        Document document = builder.parse(new File("com/company/ImportXmlFile.xml"));
         collect_information(document,DIRECTOR,company);
         collect_information(document,PROJECT_MANAGER,company);
         collect_information(document,QA_SPECIALIST,company);
