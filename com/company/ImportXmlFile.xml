@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<company>
+    <employees>
+        <Director>
+            <dir name="Aomine" middle_name="Daiki" p_in_hour ="500" age="37" exp="3"/>
+        </Director>
+        <Project_Manager>
+            <pm name="Dmitriy" middle_name="Konstantinovic" p_in_hour ="60" age="21" exp="2"/>
+            <pm name="Maksim" middle_name="Ivanovic" p_in_hour ="120" age="29" exp="3"/>
+            <pm name="Sergey" middle_name="Sergeevic" p_in_hour ="30" age="18" exp="1"/>
+        </Project_Manager>
+        <QA>
+            <qa name="Victoria" middle_name="Anatolyevna" p_in_hour ="60" age="21" exp="2"/>
+            <qa name="Vadim" middle_name="Sergeevic" p_in_hour ="80" age="26" exp="3"/>
+            <qa name="Anatoliy" middle_name="Pavlovic" p_in_hour ="50" age="32" exp="2"/>
+            <qa name="Dmitriy" middle_name="Maksimovic" p_in_hour ="40" age="20" exp="1"/>
+        </QA>
+        <Graphic_Designer>
+            <graphic name="Aleksey" middle_name="Vladislavovic" p_in_hour ="150" age="21" exp="3"/>
+            <graphic name="Polina" middle_name="Sergeevna" p_in_hour ="100" age="31" exp="2"/>
+            <graphic name="Marina" middle_name="Dmitrievna" p_in_hour ="65" age="23" exp="1"/>
+        </Graphic_Designer>
+        <Software_Developer>
+            <soft name="Pavel" middle_name="Anatolievic" p_in_hour ="120" age="35" exp="2"/>
+            <soft name="Sergey" middle_name="Aleksandrovic" p_in_hour ="200" age="25" exp="3"/>
+            <soft name="Aleksandra" middle_name="Grigorievna" p_in_hour ="120" age="28" exp="2"/>
+            <soft name="Dmitriy" middle_name="Konstantinovic" p_in_hour ="80" age="19" exp="1"/>
+            <soft name="Diana" middle_name="Maksimovna" p_in_hour ="75" age="21" exp="1"/>
+        </Software_Developer>
+        <Engineer>
+            <eng name="Nikita" middle_name="Antonovic" p_in_hour ="120" age="18" exp="3"/>
+            <eng name="Anatoliy" middle_name="Anatolievic" p_in_hour ="50" age="21" exp="1"/>
+            <eng name="Konstantin" middle_name="Andreevic" p_in_hour ="80" age="23" exp="2"/>
+            <eng name="Valeriy" middle_name="Mihaylovic" p_in_hour ="130" age="32" exp="3"/>
+        </Engineer>
+    </employees>
+</company>
