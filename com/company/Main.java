@@ -1,7 +1,6 @@
 package com.company;
 
 import org.xml.sax.SAXException;
-
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
@@ -12,8 +11,8 @@ public class Main {
         ImportExportFromXml importing = new ImportExportFromXml();
         importing.import_employees(epam);
         epam.showInformation();
-        epam.collectingTeam();
-/*      epam.showInfoAboutTeam();
+        epam.addTeam();
+/*      epam.showTeams();
         Customer customer = new Customer();
         epam.order(customer);*/
         //epam.showHierarchy();

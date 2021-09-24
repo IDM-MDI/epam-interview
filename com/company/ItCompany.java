@@ -1,7 +1,8 @@
 package com.company;
 
-import Workers.*;
+import com.company.Workers.*;
 
+import java.sql.Driver;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,7 +16,71 @@ public class ItCompany
         employees = new ArrayList<>();
         teams = new ArrayList<>();
     }
-    public void showInfoAboutTeam()
+    public Employee getEmployee(String name,String Position)
+    {
+        if(Position == "Soft Developer")
+        {
+            for(Employee i: employees)
+            {
+                if(i.getName().equals(name) && i instanceof SoftDeveloper)
+                {
+                    return i;
+                }
+            }
+        }
+        else if(Position == "Engineer")
+        {
+            for(Employee i: employees)
+            {
+                if(i.getName().equals(name) && i instanceof Engineer)
+                {
+                    return i;
+                }
+            }
+        }
+        else if(Position == "QA")
+        {
+            for(Employee i: employees)
+            {
+                if(i.getName().equals(name) && i instanceof QA)
+                {
+                    return i;
+                }
+            }
+        }
+        else if(Position == "Graphic Designer")
+        {
+            for(Employee i: employees)
+            {
+                if(i.getName().equals(name) && i instanceof GraphicDesigner)
+                {
+                    return i;
+                }
+            }
+        }
+        else if(Position == "Project Manager")
+        {
+            for(Employee i: employees)
+            {
+                if(i.getName().equals(name) && i instanceof ProjectManager)
+                {
+                    return i;
+                }
+            }
+        }
+        else
+        {
+            for(Employee i: employees)
+            {
+                if(i.getName().equals(name) && i instanceof Director)
+                {
+                    return i;
+                }
+            }
+        }
+        return null;
+    }
+    public void showTeams()
     {
         for (int i = 0; i < teams.size(); i++)
         {
@@ -26,50 +91,17 @@ public class ItCompany
           teams.get(i).showInfoAboutTeam();
         }
     }
-    public void collectingTeam()
+    public void addTeam()
     {
         Team typeTeam = new Team();
-        showInformationAboutSpecifiedPosition("Soft Developer");
-        checkingAndCollectionWithTime(typeTeam,"Soft Developer");
-        showInformationAboutSpecifiedPosition("Engineer");
-        checkingAndCollectionWithTime(typeTeam,"Engineer");
-        showInformationAboutSpecifiedPosition("QA");
-        checkingAndCollectionWithTime(typeTeam,"QA");
-        showInformationAboutSpecifiedPosition("Project Manager");
-        checkingAndCollectionWithTime(typeTeam,"Project Manager");
-        typeTeam.setPriceOfTeamPerOneHour();
+        typeTeam = typeTeam.createTeam(this);
         teams.add(typeTeam);
     }
 
-    private void checkingAndCollectionWithTime(Team team,String position)
-    {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Type how many " + position+" do you want in your team");
-        String userChoice = scanner.nextLine();
-        int userChoiceInteger = Integer.parseInt(userChoice);
-        int i=0;
-        int forChecking;
-        do
-        {
-            System.out.println("Type Name to choose them to your team");
-            userChoice = scanner.nextLine();
-            forChecking = collectingSpecifiedPosition(position,userChoice);
-            if(forChecking == -1 || isThereSuchPersonInTeam(team,position,userChoice) !=false)
-            {
-                i--;
-            }
-            else
-            {
-                team.addEmployee(employees.get(forChecking));
-            }
-            i++;
-        }while(i!= userChoiceInteger);
-
-    }
     public void order(Customer customer)
     {
         Scanner scanner = new Scanner(System.in);
-        showInfoAboutTeam();
+        showTeams();
         int choice;
         while(true)
         {
@@ -87,62 +119,8 @@ public class ItCompany
         }
         System.out.println("Price: "+ teams.get(choice).priceOfTeam(customer.getTypeOfTime()));
     }
-    private boolean isThereSuchPersonInTeam(Team team,String position,String name) {
-        switch (position) {
-            case "Soft Developer" -> {
-                for (int i = 0; i < team.employees.size(); i++) {
-                    if (team.employees.get(i) instanceof SoftDeveloper && team.employees.get(i).getName().equals(name)) {
-                        System.out.println("Sorry, but there is already such a person in your team");
-                        return true;
-                    }
-                }
-            }
-            case "Engineer" -> {
-                for (int i = 0; i < team.employees.size(); i++) {
-                    if (team.employees.get(i) instanceof Engineer && team.employees.get(i).getName().equals(name)) {
-                        System.out.println("Sorry, but there is already such a person in your team");
-                        return true;
-                    }
-                }
-            }
-            case "Director" -> {
-                for (int i = 0; i < team.employees.size(); i++) {
-                    if (team.employees.get(i) instanceof Director && team.employees.get(i).getName().equals(name)) {
-                        System.out.println("Sorry, but there is already such a person in your team");
-                        return true;
-                    }
-                }
-            }
-            case "Graphic Designer" -> {
-                for (int i = 0; i < team.employees.size(); i++) {
-                    if (team.employees.get(i) instanceof GraphicDesigner && team.employees.get(i).getName().equals(name)) {
-                        System.out.println("Sorry, but there is already such a person in your team");
-                        return true;
-                    }
-                }
-            }
-            case "QA" -> {
-                for (int i = 0; i < team.employees.size(); i++) {
-                    if (team.employees.get(i) instanceof QA && team.employees.get(i).getName().equals(name)) {
-                        System.out.println("Sorry, but there is already such a person in your team");
-                        return true;
-                    }
-                }
-            }
-            case "Project Manager" -> {
-                for (int i = 0; i < team.employees.size(); i++) {
-                    if (team.employees.get(i) instanceof ProjectManager && team.employees.get(i).getName().equals(name)) {
-                        System.out.println("Sorry, but there is already such a person in your team");
-                        return true;
-                    }
-                }
-            }
-        }
-        System.out.println("Accepted. There is no such a person in the team");
-        return false;
-    }
 
-    private int collectingSpecifiedPosition(String position,String name)
+    private int collectSpecifiedPosition(String position, String name)
     {
         switch (position) {
             case "Soft Developer" -> {
@@ -199,39 +177,29 @@ public class ItCompany
         employees.add(employee);
     }
 
+
+    private Employee getEmployee(WorkExperience we)
+    {
+        for(Employee i: employees)
+        {
+            if(i.getWorkExperience().equals(we))
+            {
+                return i;
+            }
+        }
+        return null;
+    }
     public void showHierarchy()
     {
-        WorkExperience we;
         List<Employee> typename = new ArrayList<>();
-        we = WorkExperience.SENIOR;
-        for (int i = 0; i < employees.size(); i++)
-        {
-            if(employees.get(i).getWorkExperience() == we)
-            {
-                typename.add(employees.get(i));
-            }
-        }
-        we = WorkExperience.MIDDLE;
-        for (int i = 0; i < employees.size(); i++)
-        {
-            if(employees.get(i).getWorkExperience() == we)
-            {
-                typename.add(employees.get(i));
-            }
-        }
-        we = WorkExperience.JUNIOR;
-        for (int i = 0; i < employees.size(); i++)
-        {
-            if(employees.get(i).getWorkExperience() == we)
-            {
-                typename.add(employees.get(i));
-            }
-        }
-        showInformationAboutSpecifiedPosition(typename,"Director");
-        showInformationAboutSpecifiedPosition(typename,"Project Manager");
-        showInformationAboutSpecifiedPosition(typename,"Soft Developer");
-        showInformationAboutSpecifiedPosition(typename,"Graphic Designer");
-        showInformationAboutSpecifiedPosition(typename,"QA");
+        typename.add(getEmployee(WorkExperience.SENIOR));
+        typename.add(getEmployee(WorkExperience.MIDDLE));
+        typename.add(getEmployee(WorkExperience.JUNIOR));
+        showInfoAboutSpecifiedPosition(typename,"Director");
+        showInfoAboutSpecifiedPosition(typename,"Project Manager");
+        showInfoAboutSpecifiedPosition(typename,"Soft Developer");
+        showInfoAboutSpecifiedPosition(typename,"Graphic Designer");
+        showInfoAboutSpecifiedPosition(typename,"QA");
     }
     public List<Employee> getEmployees()
     {
@@ -253,7 +221,7 @@ public class ItCompany
             employees.get(i).showInfo();
         }
     }
-    public void showInformationAboutSpecifiedPosition(String position)
+    public void showInfoAboutSpecifiedPosition(String position)
     {
         switch (position) {
             case "Soft Developer" -> {
@@ -300,7 +268,7 @@ public class ItCompany
             }
         }
     }
-    public void showInformationAboutSpecifiedPosition(List<Employee>typename,String position)
+    public void showInfoAboutSpecifiedPosition(List<Employee>typename, String position)
     {
         switch (position) {
             case "Soft Developer" -> {

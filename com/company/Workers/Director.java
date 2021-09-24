@@ -1,4 +1,4 @@
-package Workers;
+package com.company.Workers;
 
 public class Director extends Employee
 {
